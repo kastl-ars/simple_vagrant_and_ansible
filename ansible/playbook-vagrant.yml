@@ -1,0 +1,12 @@
+---
+
+- name: 'Simple Vagrant and Ansible'
+  hosts: 'all'
+  gather_facts: true
+  become: true
+
+  tasks:
+
+    - name: 'Debug'
+      ansible.builtin.debug:
+        msg: "Hallo {{ inventory_hostname }}"
