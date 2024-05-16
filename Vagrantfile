@@ -1,10 +1,10 @@
 Vagrant.configure("2") do |config|
 
   # name the VMs
-  config.vm.define "rocky9" do |node|
+  config.vm.define "leap-15-6" do |node|
 
     # which image to use
-    node.vm.box = "rockylinux/9"
+    node.vm.box = "opensuse/Leap-15.6.x86_64"
 
     # sizing of the VMs
     node.vm.provider "libvirt" do |lv|
@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
     end
 
     # set the hostname
-    node.vm.hostname = "rocky9"
+    node.vm.hostname = "leap-15-6"
 
     # disable the shared folder
     node.vm.synced_folder ".", "/vagrant", disabled: true
@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     node.vm.provision "ansible" do |ansible|
       ansible.compatibility_mode = "2.0"
       ansible.groups = {
-        "simple"  => [ "rocky9" ]
+        "simple"  => [ "leap-15-6" ]
       }
       ansible.playbook = "ansible/playbook-vagrant.yml"
     end # node.vm.provision
